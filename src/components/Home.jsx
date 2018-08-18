@@ -1,20 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import HomeRegister from "./HomeRegister.jsx";
 import HomeFeed from "./HomeFeed.jsx";
 
 class Home extends React.Component {
-  state = {
-    loggedIn: true
-  };
   render() {
+    console.log(this.props.auth);
     return (
       <div>
-        {!this.state.loggedIn && <HomeRegister />}
-        {this.state.loggedIn && <HomeFeed />}
+        {!this.props.auth.status && <HomeRegister />}
+        {this.props.auth.status && <HomeFeed />}
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+export default connect(mapStateToProps)(Home);

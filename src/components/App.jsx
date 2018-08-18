@@ -1,22 +1,29 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import createHistory from "history/createBrowserHistory";
-import Home from "./Home.jsx";
-import ProfilePage from "./ProfilePage.jsx";
+import { Provider } from "react-redux";
+import { addPost } from "../services/redux/actions/post.js";
+import { login, logout } from "../services/redux/actions/auth.js";
+
+import AppRouter from "./AppRouter.jsx";
+import configureStore from "../services/redux/store.js";
 
 class App extends Component {
-  loggedIn() {
-    return true;
-  }
-
+  store = configureStore();
   render() {
+    this.store.dispatch(
+      addPost({
+        userId: "user_1",
+        text: "this is the text of the second post",
+        image: "https://picsum.photos/200/300?image=1080",
+        likes: 0,
+        dateCreated: 0
+      })
+    );
+    this.store.dispatch(logout());
+    console.log(this.store.getState());
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/profile/:user" component={ProfilePage} />
-        </Switch>
-      </BrowserRouter>
+      <Provider store={this.store}>
+        <AppRouter />
+      </Provider>
     );
   }
 }
