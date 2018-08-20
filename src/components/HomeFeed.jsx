@@ -9,12 +9,22 @@ class HomeFeed extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar />
-        <LeftSidebar />
-        <Feed />
-        <RightSidebar />
-      </div>
+      <React.Fragment>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-2">
+              <LeftSidebar />
+            </div>
+            <div className="col-8">
+              {" "}
+              <Feed />
+            </div>
+            <div className="col-2">
+              <RightSidebar />
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

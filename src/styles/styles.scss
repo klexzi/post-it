@@ -1,0 +1,14 @@
+@import "./settings.scss";
+* {
+  font-family: "Roboto", "Arial", "times new roman";
+}
+
+body {
+  background-color: $bg-primary;
+}
+.register-area {
+  height: 91vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

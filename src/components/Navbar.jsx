@@ -1,21 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import LoginForm from "./Navbar/LoginForm.jsx";
-import Search from "./Navbar/Search.jsx";
-import Notification from "./Navbar/Notification.jsx";
+import UserNavbar from "./Navbar/UserNavbar.jsx";
 
 class Navbar extends React.Component {
-  state = {
-    loggedIn: true
-  };
   render() {
     return (
-      <div>
-        <h2> PostIT</h2>
-        {!this.state.loggedIn && <LoginForm />}
-        {this.state.loggedIn && <Search />}
-        {this.state.loggedIn && <Notification />}
-      </div>
+      <nav className="navbar navbar-expand navbar-light flex-column flex-md-row">
+        <Link to="/" className="navbar-brand mr-0 mr-md-2">
+          PostIT
+        </Link>
+        {!this.props.auth.status && <LoginForm />}
+        {this.props.auth.status && <UserNavbar />}
+      </nav>
     );
   }
 }
-export default Navbar;
+
+const mapStateToProps = state => {
+  return { auth: state.auth };
+};
+export default connect(mapStateToProps)(Navbar);

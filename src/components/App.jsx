@@ -18,12 +18,14 @@ class App extends Component {
         dateCreated: 0
       })
     );
-    this.store.dispatch(logout());
+    this.store.dispatch(login({ status: true }));
     console.log(this.store.getState());
     return (
-      <Provider store={this.store}>
-        <AppRouter />
-      </Provider>
+      <main className="container-fluid m-0 p-0">
+        <Provider store={this.store}>
+          <AppRouter />
+        </Provider>
+      </main>
     );
   }
 }

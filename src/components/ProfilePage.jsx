@@ -6,6 +6,7 @@ import Feed from "./ProfilePage/Feed.jsx";
 
 class ProfilePage extends React.Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <Navbar />

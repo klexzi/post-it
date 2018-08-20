@@ -25,7 +25,8 @@ class PostForm extends Component {
       image: null,
       error: false,
       message: null
-    }
+    },
+    renderPostForm: this.props.renderPostForm
   };
 
   handleTextarea = e => {
@@ -78,6 +79,7 @@ class PostForm extends Component {
         }
       });
       this.props.dispatch(addPost(this.state.details));
+      this.setState({ displayClass: !this.state.ren });
       console.log(this.props.posts);
     } else {
       this.setState({
@@ -92,7 +94,7 @@ class PostForm extends Component {
   render() {
     console.log(this.props.posts);
     return (
-      <div>
+      <div className={this.state.displayClass}>
         <form onSubmit={this.handleSubmit}>
           <textarea onChange={this.handleTextarea} cols="30" rows="10" />
           <input onChange={this.handleImage} type="text" />
